@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 正则语法
+            // - 元字符 （. \d \w \s ....）
+            // - 量词（? + * {x,y} ....）
+            // - 方括号（[abc]   [a-c]）
+            // - 修饰符 （g i m）
+        
+        let str = 'aba  abbba  abbbbba  aha  aa';
+        // let reg = /ab*a/g;
+        // let reg = /ab+a/g;
+        // let reg = /ab?a/g;
+        // let reg = /ab{3,}a/g;
+        let reg = /ab{3,4}a/g; // 3,4 之间不要加空格
+        
+        console.log( str.match(reg) );
+
+        /*
+        * 表示任意多个前导字符。前导字符指的是量词前面的一个字符
+        + 表示至少有一个前导字符
+        ? 表示0个或1个前导字符
+        {3,} 表示至少有3个前导字符
+        {3,4} 表示前导字符个数是3~4，包括3个4
+        */
+    </script>
+</body>
+</html>

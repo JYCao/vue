@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        p {
+            font-size: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div style="font-size: 2rem;">你好</div>
+    <p>哈哈哈</p>
+
+    <script>
+        // 通过JS代码实现rem适配
+        /*
+        思路：  比例(80)  =  设备宽度(1920) / 基准值(24)
+               获取当前设备宽度。 
+                    比如是：1680，该设备下，1rem = 1680/80
+                    比如是：1024，该设备下，1rem = 1024/80
+               最后，把计算得到的px值，设置给 html 元素
+        */
+
+        function setFont () {
+            // 获取根元素
+            let html = document.documentElement;
+            // 获取html的宽度
+            let width = html.clientWidth;
+            // 判断临界点
+            if (width < 1024) width = 1024;
+            if (width > 1920) width = 1920;
+            // console.log(width);
+            let fontSize = width / 80 + 'px';
+            // 最后，设置html元素的font-size即可
+            html.style.fontSize = fontSize;
+        }
+        setFont();
+
+        // 注册 window 的 resize 事件
+        window.onresize = function () {
+            // console.log(111)
+            setFont();
+        }
+
+    </script>
+</body>
+</html>

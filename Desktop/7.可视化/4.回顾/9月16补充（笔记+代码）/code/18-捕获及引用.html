@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 
+        var str = '5566 3434 5678 9090 1122 7887 0220 3345';
+
+        // 需求1：查找连续的4个数字
+        // var reg = /\d\d\d\d/g;
+        // var reg = /[0-9][0-9][0-9][0-9]/g;
+        // var reg = /\d{4}/g
+        // console.log(  str.match(reg)  );
+
+
+        // 需求2：查找连续的4个数字，要求第1位和第2位相同；第3位和第4位相同
+        // var reg = /(\d)\1(\d)\2/g;
+        // console.log(  str.match(reg)  )
+
+
+        // 需求3：查找连续的4个数字，要求第1位和第3位相同；第2位和第4位相同
+        // var reg = /(\d)(\d)\1\2/g;
+        // console.log(  str.match(reg)  );
+
+        // 需求3：查找连续的4个数字，要求第1位和第4位相同；第2位和第3位相同
+        var reg = /(\d)(\d)\2\1/g;
+        console.log(str.match(reg));
+    </script>
+</body>
+
+</html>

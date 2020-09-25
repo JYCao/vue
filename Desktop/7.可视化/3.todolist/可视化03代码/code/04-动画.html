@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 定义动画 */
+        @keyframes abc {
+            0% {
+                /* div开始的位置，这里不用做任何改变 */
+            }
+            100% {
+                transform: translateX(200px);
+            }
+        }
+
+        div {
+            width: 100px;
+            height: 100px;
+            background-color: thistle;
+            /* 当前这个div要使用动画，所以就调用前面准备好的动画 */
+            animation: abc 2s linear infinite;
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+    
+    <div id="container">
+        <div class="left">
+            <div class="add">
+                <span>姓名</span>
+                <input type="text" id="username">
+                <span>评分</span>
+                <input type="number" id="score">
+                <span>薪资</span>
+                <input type="number" id="salary">
+                <button>新增</button>
+            </div>
+            <div class="list">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>姓名</th>
+                            <th>评分</th>
+                            <th>薪资(单位：万)</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- <tr class="noedit">
+                            <td>张三</td>
+                            <td>99</td>
+                            <td>2.0</td>
+                            <td>
+                                <img src="imgs/upd.png" alt="">
+                                <img src="imgs/del.png" alt="">
+                            </td>
+                        </tr>
+                        <tr class="edit">
+                            <td><input type="text" value="张三" class="username"></td>
+                            <td><input type="number" value="99" class="score"></td>
+                            <td><input type="number" value="2.0" class="salary"></td>
+                            <td>
+                                <img src="imgs/yes.png" alt="">
+                                <img src="imgs/no.png" alt="">
+                            </td>
+                        </tr> -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="right">
+            <div class="bar"></div>
+            <div class="line"></div>
+        </div>
+    </div>
+
+    <script src="js/echarts.min.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/index.js"></script>
+</body>
+</html>

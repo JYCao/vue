@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let arr = [3, 2, 8, 9, 5, 0, 4];
+
+        // console.log(arr.sort());
+
+        // 
+        let result = arr.sort(function (a, b) {
+            // return -100; 
+            // 如果返回一个非负数，不交换两个数的位置，相当于没有变化
+            // 如果返回一个负数，交换两个数的位置。
+            return 0.5 - Math.random();
+        });
+
+        console.log(result)
+    </script>
+</body>
+</html>

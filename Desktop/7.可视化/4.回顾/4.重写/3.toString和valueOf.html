@@ -1,0 +1,35 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // toString 用途: 转成字符串
+        let obj = {
+            name: '张三',
+            sex: '男',
+            weapon: function(){
+                console.log('太极');
+            },
+            toString: function() {
+                console.log('hahah');
+            },
+        }
+        console.log();
+        let arr = [1,2,3,4,5];
+        let m = arr.toString();
+        // 字符串转数组
+        // JSON 将js数值转化为 js字符串  或者将js字符串转化为 数组
+        // JSON 用途: 就是在数据交互的时候使用的
+        let arr1 = m.split(',');
+        console.log(arr1);
+        console.log(m);
+
+        
+    </script>
+</body>
+</html>

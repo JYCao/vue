@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var str = 'This is a ES6, that is a CSS3 _ -*&#';
+        // var reg = /[as\d]/g;
+        // var reg = /[^as\d]/g;
+
+        // var reg = /[A-z]/g;
+        
+        var reg = /[A-z]/g;
+
+        console.log(  str.match(reg)  );
+
+        /*
+        [abc] 枚举。意思是匹配字符串中的a、b、c
+            - 比如：[as\d] 意思是匹配字符串中的所有的a、所有的s、所有的数字
+        [^abc] 和 [abc]刚好相反，意思匹配除了abc以为的其他字符
+
+        [起始-结束] 表示一个范围。
+
+            - 比如 [a-z]
+            - 比如 [2-7]
+            - 比如 [A-z] 查找所有的大小写字母及下划线
+        */
+    </script>
+</body>
+</html>

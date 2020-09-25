@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .contain {
+            margin: 10px auto;
+            width: 800px;
+        }
+
+        .add {
+            padding: 10px;
+            border: solid 1px #ccc;
+        }
+
+        table,
+        td,
+        th {
+            border: solid 1px #ccc;
+            border-collapse: collapse;
+        }
+
+        table {
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="contain">
+        <div class="add">
+            任务名称：<input type="text" id="todo">
+            发布时间：<input type="datetime-local" id="datetime">
+            <button>添加</button>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>任务</th>
+                    <th>状态</th>
+                    <th>添加时间</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+
+
+            </tbody>
+        </table>
+    </div>
+    <!-- 案例 -->
+
+    <script src="./jquery.min.js"></script>
+    <script src="./local.js"></script>
+    <script>
+        // 1.绑定点击事件
+        $('button').click(function () {
+            // 给本地数据,数据从哪来,获取数据
+            let todo = $('#todo').val().trim();
+            let datetime = $('#datetime').val().trim();
+            let data = {
+                todo: todo,
+                status: '正在进行',
+                datetime: datetime,
+            };
+            // 把data 存储到本地
+            add(data);
+            renderHtml()    ;
+        });
+        // 2. 渲染数据到页面上
+        let renderHtml = () => {
+            let newdata = get();
+            // 遍历这个数组,将数据一一给与页面
+            let  arr = [];
+            newdata.forEach((item,index) => {
+                // 在页面上创建元素
+                
+                arr.push(
+                    `<tr>
+                    <td>${item.todo}</td>
+                    <td>${item.status}</td>
+                    <td>${item.datetime}</td>
+                    <td>
+                        <a class= 'dele' href="javascript:" data-index = '${index}'>删除</a>
+                        <a href="javascript:">修改</a>
+                    </td>
+                    </tr>` 
+                );
+               
+            });
+            $('tbody').html(arr.join(''));
+        }
+        renderHtml();
+        // 删除功能
+        // 1. 先删除本地数据.绑定点击事件  因为是动态的,只能用on
+        $('body').on('click','a:contains("删除")',()=>{
+            let index = $(this).data('index');
+            del(index);
+            renderHtml();
+        });
+
+
+
+
+
+
+    </script>
+
+
+</body>
+
+</html>

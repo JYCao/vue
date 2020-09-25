@@ -1,0 +1,90 @@
+/* body */
+
+body {
+  background: url('../images/bg.jpg') no-repeat;
+  background-size: cover;
+  margin: 0;
+  padding: 0;
+  color: #4c9bfd;
+  line-height: 1.15;
+  font-size: 0.5rem;
+}
+
+/* 最大的盒子 viewport */
+
+.viewport {
+  background: url('../images/logo.png') no-repeat;
+  background-size: contain;
+  min-height: 780px;
+  /* 临时给个高度 */
+  min-width: 1024px;
+  max-width: 1920px;
+  padding: 3.667rem 0.833rem 0;
+  display: flex;
+}
+
+.column {
+  flex: 3;
+}
+
+.column:nth-child(2) {
+  flex: 4;
+  margin: 1.333rem 0.833rem 0;
+}
+
+h4, h3, ul {
+  margin: 0;
+  padding: 0;
+  font-weight: normal;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+
+
+/* 公共面板样式：设置图片边框 */
+.panel {
+  /* 使用图片当做边框，必须先设置盒子的border */
+  border: solid 1rem transparent;
+  border-width: 2.125rem 1.583rem 0.833rem 5.5rem;
+  border-image-source: url('../images/border.png');
+  border-image-slice: 51 38 20 132;
+  border-image-width: 2.125rem 1.583rem 0.833rem 5.5rem;
+  position: relative;
+  margin-bottom: 0.833rem;
+  box-sizing: border-box;
+}
+
+.inner {
+  position: absolute;
+  top: -2.125rem;
+  right: -1.583rem;
+  bottom: -0.833rem;
+  left: -5.5rem;
+  padding: 1rem 1.5rem;
+}
+
+/* ****************** 概览区域 ***************** */
+.overview {
+  height: 4.583rem;
+}
+.overview .inner {
+  display: flex;
+  justify-content: space-between;
+}
+.overview h4 {
+  font-size: 1.167rem;
+  color: #fff;
+  margin-left: 0.2rem;
+  margin-bottom: 0.333rem;
+}
+.overview span {
+  font-size: 0.667rem;
+  color: #4c9bfd;
+}

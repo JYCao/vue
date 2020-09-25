@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 正常函数执行原理:
+        // 开辟新栈,运行函数,结束,关闭栈.内存释放
+        // 代码解释:
+        function test() {
+            let i = 1;
+            console.log(i++)
+
+        }
+        test();//1
+        test();//1
+        test();//1
+        test();//1
+        // 结果都一样
+
+
+
+
+        // 闭包: 函数运行结束, 内存不会释放,函数里面的相当于变量,会长久的存在栈中,不会释放
+
+        function fn() {
+            let i = 1;
+            function lan() {
+                console.log(i++);
+            }
+            return lan;
+        }
+
+        let dudu = fn();
+        dudu();//1
+        dudu();//2
+        dudu();//3
+
+        // 2. 堆栈
+        // 复杂数据类型 如 : 函数  对象 放到堆区  而这些东西都会自动生成一个地址,每一个地址标志了一个数据
+        // 简单数据类型 变量 如: 字符串等  堆区生成的地址等  放到栈区.里面有变量的映射
+        // 总结:
+        // 堆: 存复杂数据类型
+        // 栈: 存简单数据类型,函数运行,运行结束,自动释放栈内存 
+        // 访问: 直接访问栈,简单数据就直接访问到,复杂数据类型会通过栈里面对应的地址.不能直接访问堆区
+
+        var obj = {
+            id: 1,
+            age: 20,
+        }
+        var obj1 = obj;
+        function t (){
+            obj1.age = 30;
+
+        }
+        t();
+        console.log(obj1.age);
+
+    </script>
+</body>
+
+</html>

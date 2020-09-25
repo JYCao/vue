@@ -1,0 +1,127 @@
+html,
+body {
+  height: 100%;
+}
+body {
+  background: url('../imgs/bg.jpg') no-repeat;
+  background-size: 100% 100%;
+  min-width: 1280px;
+}
+.bgandborder {
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 8px;
+  box-shadow: 0 0 8px 2px #aaaaaa;
+  margin: 8px;
+}
+.input input {
+  border-radius: 5px;
+  padding-left: 5px;
+  outline: none;
+  border: 0;
+}
+#container {
+  height: 100%;
+  display: flex;
+}
+#container .left {
+  flex: 1;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 8px;
+  box-shadow: 0 0 8px 2px #aaaaaa;
+  margin: 8px;
+}
+#container .left .add {
+  height: 40px;
+  color: #fff;
+  padding: 5px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+#container .left .add input {
+  border-radius: 5px;
+  padding-left: 5px;
+  outline: none;
+  border: 0;
+}
+#container .left .add input,
+#container .left .add button,
+#container .left .add span {
+  flex: 1;
+}
+#container .left .add span {
+  text-align: center;
+}
+#container .left .add input,
+#container .left .add button {
+  width: 160px;
+  height: 30px;
+  border-radius: 6px;
+  outline: none;
+}
+#container .left .add button {
+  margin-left: 5px;
+  background-color: transparent;
+  color: #fff;
+  border: solid 1px #fff;
+}
+#container .left table,
+#container .left th,
+#container .left td {
+  border: solid 1px #a9a9a9;
+  border-collapse: collapse;
+}
+#container .left table {
+  width: 100%;
+}
+#container .left table th,
+#container .left table td {
+  width: 25%;
+  text-align: center;
+  color: #fff;
+}
+#container .left table th {
+  height: 30px;
+  background-color: #2e90f9;
+}
+#container .left table tr:hover {
+  background-color: rgba(0, 0, 0, 0.65);
+}
+#container .left table img {
+  width: 24px;
+}
+#container .left table img:hover {
+  cursor: pointer;
+}
+#container .left table input {
+  width: 60px;
+}
+#container .left table input {
+  border-radius: 5px;
+  padding-left: 5px;
+  outline: none;
+  border: 0;
+}
+#container .left table .edit {
+  display: none;
+}
+#container .left table .edit td {
+  padding: 5px 0;
+}
+#container .right {
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+}
+#container .right .bar,
+#container .right .line {
+  flex: 1;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 8px;
+  box-shadow: 0 0 8px 2px #aaaaaa;
+  margin: 8px;
+  margin-left: 0;
+}
+#container .right .line {
+  margin-top: 0;
+}

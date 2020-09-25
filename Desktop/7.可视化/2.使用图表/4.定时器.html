@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        setInterval(function(){},时间);
+        // 箭头函数
+        let i=0;
+        setInterval(()=>{
+            i++;
+            if(i==4) i=0;
+            $('.order a').eq(i).click()
+        },2000); 
+    </script>
+</body>
+</html>

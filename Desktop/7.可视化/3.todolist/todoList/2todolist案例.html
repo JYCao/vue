@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .contain {
+            margin: 10px auto;
+            width: 800px;
+        }
+
+        .add {
+            padding: 10px;
+            border: solid 1px #ccc;
+        }
+
+        table,
+        td,
+        th {
+            border: solid 1px #ccc;
+            border-collapse: collapse;
+        }
+
+        table {
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="contain">
+        <div class="add">
+            任务名称：<input type="text" id="todo">
+            发布时间：<input type="datetime-local" id="datetime">
+            <button>添加</button>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>任务</th>
+                    <th>状态</th>
+                    <th>添加时间</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+            
+            </tbody>
+        </table>
+    </div>
+    <script src="./3.local.js"></script>
+    <script src="./jquery.min.js"></script>
+
+    <script>
+        // 引入了一些函数
+        // 如: serve() get() del() change() add()
+        // 1.建立初始数据 先把数据写道本地数据库中,然后把数据库中的数据映射到页面上
+        // let data = [
+        //     {
+        //         任务: '挣钱',
+        //         状态: '正在进行',
+        //         添加事件: '2008',
+        //         操作: '删除 修改'
+        //     },
+        //     {
+        //         任务: '挣钱',
+        //         状态: '正在进行',
+        //         添加事件: '2008',
+        //         操作: '删除 修改'
+        //     },
+        //     {
+        //         任务: '挣钱',
+        //         状态: '正在进行',
+        //         添加事件: '2008',
+        //         操作: '删除 修改'
+        //     }
+        // ]
+
+        // 2. 把数据库中的数据映射到页面上
+        // 首先创建标签
+        // let tbody = $(
+        //     <tr>
+        //         <td>学习</td>
+        //         <td>正在进行</td>
+        //         <td>2005年</td>
+        //         <td><a href="#">删除</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">修改</a></td>
+        //     </tr>
+
+        // );
+        // $('tbody').append(tbody);
+        // 解决步骤     1. 添加本地数据
+        // 1. 获得输入框的数据
+        $('button').click(() => {
+            let tudo = $('#todo').val().trim();
+            let datetime = $('#datetime').val().trim();
+            if (todo === '' || datetime == '') {
+                alert("必填项不能为空");
+                return;
+            }
+            let newDate = {
+                tudo: tudo,
+                status: '正在进行',
+                datetime: datetime,     
+            };
+            // 向本地中添加数据
+            add(newDate);
+            // 清空输入框的值
+            $('#todo').val('');
+            renderHtml();
+        });
+        // 2. 把获得的数据传入到页面上
+        let renderHtml = () => {
+            let data = get();
+            let arr = [];
+            data.forEach((item) => {
+                arr.push(
+                    `
+             <tr>
+                    <td>${item.tudo}</td>
+                    <td>${item.status}</td>
+                    <td>${item.datetime}</td>
+                    <td><a id = 'dele' href="javascript:">删除</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:">修改</a></td>
+                </tr>
+                `
+                );
+            });
+            $('tbody').html(arr.join(''));
+        }
+        renderHtml();
+        // 删除数据
+        // 绑定点击事件
+        $('tbody').on('click','a:contains("删除")',() => {
+            console.log(this);
+            let index = $(this).index();
+            del(index);
+            renderHtml();
+        });
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .active{
+            background-color: black;
+            width: 100px;
+            height: 100px;
+        }
+        .btn {
+            width: 300px;
+            height: 300px;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+<div class="btn">
+    <button class="order"></button>
+    <button class="order"></button>
+    <button class="order"></button>
+    <button class="order"></button>
+</div>
+    
+    <script src="./案例/js/jquery.min.js"></script>
+
+    <script>
+        // 定时器: 循环触发某个事件.而这个事件有时间属性
+        // 应用场景: 轮播图 自动触发时间,自动变换等事件
+        // 语法:
+    // (function(){
+        $(".order").click(function(){
+            $(this).addClass('active').siblings().removeClass('active');
+        }); 
+        let i = 0;
+       let timer = setInterval(function(){
+            i++;
+            if(i==4) i=0;
+            $('.order').eq(i).click();
+        },1000);      
+        // 鼠标悬停,清除定时器
+        $('.btn').hover(function(){
+            clearInterval(timer);
+        },function(){
+            timer = setInterval(function(){
+            i++;
+            if(i==4) i=0;
+            $('.order').eq(i).click();
+        },1000);  
+        })
+
+    // })();                                        
+
+
+
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // ES6 新增的语法 ...
+        // ... 一种情况表示剩余参数
+        // ... 另一种情况，表示展开运算符
+        // 这二者完全不一样，不能混为一谈
+
+        // ----------------  剩余参数 -------------------
+        // 剩余参数，指的是函数的参数。
+        // 只有在声明函数的时候，才会用到到。
+        // 作用就是接收函数的实参
+        // function test (...val) {
+        //     console.log(val); // []
+        // }
+        // test(2)
+        // test(2, 3, 5)
+        // test(2, 3)
+        // test(2, 3, 6, 2, 9)
+
+
+        // ----------------  展开运算符 -------------------
+        // 在构造新数组或为函数传参的时候，可以把数组或字符串在语法层面上展开。另外，在构造字面量对象的时候，可以把另一个对象在语法层面上展开。
+
+        // 1. 在构造新数组时，可以把其他数组展开
+        // let arr1 = [1, 2];
+        // let arr2 = [3, 4];
+        // // 构造一个新的数组，数组中要包含arr1和arr2里面的所有元素
+        // let arr3 = [0, -1, 8, ...arr1, ...arr2];
+        // console.log(arr3);
+
+        // 2. 在构造新数组时，可以把字符串展开
+        // let str1 = 'ab';
+        // let str2 = 'cd';
+        // // 构造新数组
+        // let arr = [...str1, ...str2, 'e', 'f'];
+        // console.log(arr)
+
+        // 3. 在为函数传参的时候，可以把实参数组展开
+        // function abc (a, b, c, d) {
+        //     console.log(a, b, c, d);
+        // }
+        // let arr = [1, 2, 3, 4];
+        // abc(...arr);
+
+        // 求一个数组的最大值
+        // let arr = [8, 3, 2, 7, 9, 0, -1, 4];
+        // console.log(Math.max(...arr))
+
+        // 4. 在为函数传递实参的时候，可以把字符串展开
+        // function test (x, y, z) {
+        //     console.log(x, y, z);
+        // }
+        // test(...'abc');
+
+        // 5. 构造字面量对象
+        let obj1 = { id: 1, age: 20 };
+        let obj2 = { name: 'zs', height: '175cm' };
+
+        // 构造新对象
+        let obj3 = {
+            ...obj1,
+            ...obj2,
+            weight: '70kg'
+        };
+        console.log(obj3)
+    </script>
+</body>
+
+</html>

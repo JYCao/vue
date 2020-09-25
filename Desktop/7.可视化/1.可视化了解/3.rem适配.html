@@ -1,0 +1,20 @@
+1. 获取html元素
+2. 通过html的属性   获取设备宽度
+3. 设置font-size 通过设备宽度
+4. 上面的封装如函数
+5. 添加事件,调用函数.完成响应式
+<!-- 1. 获取html元素 -->
+let html = $('html');
+<!-- 2. 获取设备宽度 -->
+let width = html.width();
+if(width<1024) {
+  width = 1024;
+};
+if(width>1920) {
+  widht = 1920;
+};
+// console.log(width);
+<!-- 3. 根据设备宽度进行字体换算 -->
+let rootFontSize = width/80 + 'px';
+ <!-- 4. 设置根元素的font-size -->
+html.css('font-size','rootFontSize');

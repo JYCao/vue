@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 200px;
+            height: 200px;
+            border: solid 20px #ccc;
+
+            /* 设置边框图片 */
+            /* border-image-source: url('images/border.jpg'); */
+            /* 约定如何剪裁图片 */
+            /* border-image-slice: 167; */
+            /* 图片边框宽度 */
+            /* border-image-width: 40px; */
+            /* 设置重复方式 */
+            /* border-image-repeat: round; */
+
+            /* 组合写法 */
+            /* border-image: url('images/border.jpg') 剪裁大小/图片边框宽度 重复方式; */
+            border-image: url('images/border.jpg') 167/20px round;
+            /* border-image: url('images/border.jpg') 167 200 167 250 / 20px 30px 10px round; */
+        }
+    </style>
+</head>
+<body>
+    <div>
+        hello
+    </div>
+</body>
+</html>

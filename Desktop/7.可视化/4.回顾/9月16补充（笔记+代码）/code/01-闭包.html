@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+function out () {
+    let i = 1;
+    function inner () {
+        console.log(i++);
+    }
+    return inner;
+}
+
+// 调用函数，会得到该函数的返回值；
+// out函数被调用，会得到它的返回值，即inner函数
+let fn = out(); // fn 相当于是 inner
+fn();  // 1
+fn();  // 2
+fn();  // 3
+// fn = null;
+
+
+        // function test () {
+        //     let i = 1;
+        //     console.log(i++);
+        // }
+
+        // test(); // 1
+        // test(); // 1
+        // test(); // 1
+
+        
+    </script>
+</body>
+</html>

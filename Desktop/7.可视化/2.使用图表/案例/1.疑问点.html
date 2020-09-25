@@ -1,0 +1,20 @@
+(function () {
+    let data = [
+        { order: '100', eat: '400' },
+        { order: '200', eat: '300' },
+        { order: '300', eat: '200' },
+        { order: '400', eat: '100' },
+    
+    ];
+    $(".order a").click(function () {
+
+        // 点击的按钮样式切换
+        $(this).addClass("active").siblings().removeClass("active");
+        // 下面内容的切换,这里实际上是上面两个曲线的的切换
+        let i = $(this).index();
+        $('.order h4').eq(0).text(data[i].order);
+        $('.order h4').eq(1).text(data[i].eat);
+
+    });
+
+})();

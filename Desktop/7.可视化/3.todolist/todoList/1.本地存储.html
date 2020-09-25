@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // localStorage 本地存储
+        // setItem(key,value)
+        // getItem(key)
+        // removeItem(key)
+        // clear()
+
+        // 本地存储的特点
+        // 1. 数据会永久保存
+        // 2. 本地存储的数据,只有当前用户能过够使用
+        // 3. 一个域的本地存储的数据与另外域的本地存储数据不能通用
+        // 4. 本地存储的数据只能是字符串,如果要存储复杂数据类型  那么需要把他们转换成字符串
+        // 利用  JSON.stringify(数组或者对象)
+        // 再通过JSON.parse(字符串) 转化成 数组
+        // 0,0.0,null,undefined,'',false,NaN 这些转成布尔值是false  其他都是true
+        // 判断语句一旦正确,后面的都不用看
+        // 一旦碰到并且,应对刚开始没有数据的情况
+
+        let students = [
+            { id: 1, name: '张', sex: '男' },
+            { id: 5, name: '哈哈哈', sex: '嘟嘟嘟' },
+            { id: 1, name: '张', sex: '男' },
+            { id: 1, name: '张', sex: '男' },
+            { id: 1, name: '张', sex: '男' },
+            { id: 1, name: '张', sex: '男' },
+        ];
+        // 存储数据
+        let save = a => {
+            localStorage.setItem('dataName', JSON.stringify(a));
+        }
+
+        //  获得数据
+        let get = () => {
+            return JSON.parse(localStorage.getItem('dataName')) || [];
+        }
+
+
+        // 添加数据
+        let add = b => {
+            // 1. 获取所有数据
+            let data = get();
+            // 添加数据到数组中
+            data.push(a);
+            serve(data);
+            return data;
+        }
+
+
+        // 删除数据
+        let del = (index) => {
+            // 获取数据
+            let data = get();
+            // 根据索引删除数据
+            data.splice(index, 1);
+            // 把这个数据保存到本地
+            save(data);
+            return data;
+        }
+
+
+        // 修改数据
+        let change = (index, c) => {
+            // 获取所有数据
+            let data = get();
+            // 删除数据,并在原来位置添加数据达到修改 的目的
+            data.splice(index, 2, c)
+            // 把这个数据保存到本地
+            save(data);
+            return data;
+        }
+
+
+    </script>
+</body>
+
+</html>

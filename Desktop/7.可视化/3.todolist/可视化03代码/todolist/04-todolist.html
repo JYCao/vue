@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .contain {
+            margin: 10px auto;
+            width: 800px;
+        }
+
+        .add {
+            padding: 10px;
+            border: solid 1px #ccc;
+        }
+
+        table, td, th {
+            border: solid 1px #ccc;
+            border-collapse: collapse;
+        }
+
+        table {
+            width: 100%;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="contain">
+        <div class="add">
+            任务名称：<input type="text" id="todo"> 
+            发布时间：<input type="datetime-local" id="datetime"> 
+            <button>添加</button>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>任务</th>
+                    <th>状态</th>
+                    <th>添加时间</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+                
+            </tbody>
+        </table>
+    </div>
+
+
+    <script src="jquery.min.js"></script>
+    <script src="local.js"></script>
+    <script>
+        /*
+        * 设计数据格式：
+        [
+            { todo: '晚上不上晚自习了', status: '进行中', datetime: '2020-09-13 15:01:40' },
+            { todo: '12号晚，陪女朋友过生日', status: '已完成', datetime: '2020-09-13 14:01:40' },
+            { todo: '晚上和男朋友喝酒', status: '进行中', datetime: '2020-09-13 15:01:40' },
+        ]
+        */
+
+        // -------------  添加数据 ------------------
+        $('button').click(function () {
+            // 获取输入框的数据
+            let todo = $('#todo').val().trim();
+            let datetime = $('#datetime').val().trim();
+            // 判断值是否为空
+            if (todo === '' || datetime === '') {
+                alert('必填项不能为空');
+                return; // return会终止当前函数继续执行
+            }
+            // 组装数据
+            let newData = {
+                todo: todo,
+                status: '进行中',
+                datetime: datetime
+            };
+            // 调用add方法，向本地存储中添加数据
+            add(newData);
+            // 清空输入框的值。。。。
+            // 重新渲染数据
+            $('#todo').val('');
+            $('#datetime').val('');
+            renderHtml();
+        });
+    
+    
+        // -------------  渲染数据 ------------------
+        // 从本地存储中，将数据取出来，渲染到页面中
+        function renderHtml () {
+            let data = get();
+            // console.log(data);
+            let arr = [];
+            data.forEach((item, index) => {
+                arr.push(`<tr>
+                            <td>${item.todo}</td>
+                            <td>${item.status}</td>
+                            <td>${item.datetime}</td>
+                            <td>
+                                <a href="javascript:" data-index="${index}">删除</a>
+                                <a href="javascript:">编辑</a>
+                            </td>
+                        </tr>`);
+            });
+            // 遍历之后，得到了包含全部tr的数组。把数组转成字符串，放到tbody中即可
+            $('tbody').html(arr.join(''));
+        }
+        renderHtml();
+
+
+        // -------------  删除数据 ------------------
+        // 因为“删除”超链接是动态创建的元素；所以必须使用事件委托来注册事件
+        // a:contains("删除")  --  意思是找包含有 “删除” 字样的a标签
+        $('body').on('click', 'a:contains("删除")', function () {
+            // window对象中，有三种弹框方法
+            // alert('xxx'); // 警告框
+            // let r = confirm('你确定要删除吗？你好狠！'); // 提示框(用户选择确定，返回true；用户选择取消，返回false)
+            // console.log(r);
+            // let r = prompt('请输入口令'); // (用户选择取消，返回null；用户选择了确定，返回输入的内容)
+            // console.log(r);
+
+            if (!confirm('你确定不要我了吗？你好狠~')) {
+                return;
+            }
+            
+            // 找到索引
+            let index = $(this).data('index');
+            console.log(index)
+            del(index); // 把本地存储中的数据删除
+            renderHtml(); // 重新渲染页面
+        });
+    </script>
+
+</body>
+</html>

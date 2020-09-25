@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var str = 'This is a ES6, that is a CSS3';
+        // var reg = /./g; // ['T', 'h', 'i', 's', ' ', ...]
+        // var reg = /.*/g; // 匹配任意字符串，最后可能出现空
+
+        // var reg = /\w/g; // 一个\w 只表示一个字符
+        // var reg = /\W/g; // 
+        // var reg = /\d/g; // 
+        // var reg = /\D/g; // 
+        // var reg = /\s/g; // 
+        var reg = /\S/g; // 
+
+        console.log(  str.match(reg)  ); 
+
+        /*
+        // 需要注意的是，一个元字符，只匹配一个字符。
+        . 表示任意字符，但是不包含换行符
+        .* 表示任意字符串
+        \w 表示数字、字母、下划线
+        \W 匹配除了数字、字母、下划线以为，其他字符
+        \d 匹配数字
+        \D 匹配非数字
+        \s 匹配空格
+        \S 匹配非空格
+        */
+    </script>
+</body>
+</html>

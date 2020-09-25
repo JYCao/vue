@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+        正则方法：
+            test();  --  检测字符串是否满足正则表达式的匹配。
+            exec();  --  和match有点像；能够取得匹配的结果；但是每次只取得一个结果；如果想得到后续的其他结果，需要多次调用exec
+        支持正则的字符串方法
+            match(); -- 获取到匹配的结果
+            replace(); -- 替换
+            split(); -- 分割字符串为数组
+            search(); -- 搜索，忽略g
+
+        如果是正则方法，需要使用正则表达式去调用；
+        如果是字符串方法，需要使用字符串去调用；
+        */
+
+        // var str = 'hello';
+        // var reg = /[a-z]+/;
+
+        // console.log( reg.test(str) )
+        // console.log( str.match(reg) )
+
+
+        // ------------------ replace() ---------------------
+        // var 结果 = str.replace(查找的内容,  替换的结果);
+
+        // console.log( 'hello hello'.replace('h', 'H') )
+        // 1. 简单的替换
+        // console.log( 'hello hello'.replace(/h/g, 'H') )
+
+        // 2. 把数字替换成两个数字的形式
+        // 在正则表达式语法之外，引用捕获的内容，需要使用 $1 $2 ....
+        // console.log(  'es6 and css3'.replace(/(\d)/g, '$1$1')  )
+
+        // 3. abc ===>  a[a-b-c]c
+        // console.log(  'abc'.replace(/(b)/, "[$`-$1-$']")  )
+
+
+        // 4. aaa bbb ccc ===> Aaa Bbb Ccc
+        var result = 'aaa bbb ccc'.replace(/[a-z]+/g, function (x) {
+            // x 表示每次匹配的结果
+            return x.substr(0, 1).toUpperCase() + x.substr(1);
+        });
+        console.log(result)
+    </script>
+</body>
+</html>

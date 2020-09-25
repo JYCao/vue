@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // fn(1)(2)(3)
+        // fn(1)(2)
+        // fn(1)(2)(3)(4)
+        // fn(1)(2)(3)(4)(5)
+
+        // fn(1)(2, 3)
+
+        // fn(1, 2)(3)
+
+        // fn(1, 2, 3)
+        // 需求 求出他们的和都是 参数的加和
+
+
+
+
+
+
+        // fn(1)  //应该得到 1
+        // fn(1)(2) //应该得到3
+        // fn(1)(2)(3) //应该得到6
+        // fn(1,2)(3)  //应该得到6
+        // 求这个函数?
+        // 分析: 就是每次都把fn函数里面的参数取出来,然后使用
+        // 1. 如何取参数
+        // function fn(...a) {
+        //     return a.reduce((b,c)=> b+c); //求和都是用它
+        // };
+        // console.log(fn(1,2,3,4));
+        // 2. 最后一定要有一个包含所有参数的数组进行求和运算
+        // 3. 进阶调用的时候,会将新的参数添加到原来的数组
+        
+    //     function fn(...one) {
+    //         var n = [...one];
+    //         function ln (...two) {
+    //              n = [...n, ...two];
+    //              console.log(n);
+    //             return ln;
+    //         }
+    // //    自定义toString()方法
+    //         ln.toString =function() {
+    //             return n.reduce((a,b) => a+b);
+    //         }
+    //         // console.log(n);
+    //         console.log(n,"dudu");
+    //         return ln;
+
+    //     }
+    //     // fn(1)(2);
+    //     // fn(1)(2)(3);
+    //     // fn(1);
+    //     console.log(fn(1)(2)(3)(4)(5)+0);// 输出的就是1+2+3+4+5
+    function fn(...one) {
+        let n = [...one];
+
+        function ln(...two) {
+            n = [...n,...two];
+            return ln;
+        }
+        // 自定义toString() 方法  
+        // 优点: 每个函数和对象都有这种方法, 会自动调用
+        // 缺点: 需要是个值,或者期望的字符串
+        // 自定义valueOf()方法
+        // 优点: 都有  会自动调用
+        // 缺点: 需要是原始值才行
+        ln.toString =function () {
+            return n.reduce((a,b) => a+b);
+        }
+        return ln;
+    }
+    console.log(fn(3)(5)(5)+0);
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>

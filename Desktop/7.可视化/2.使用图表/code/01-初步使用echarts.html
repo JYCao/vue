@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./echarts.min.js"></script>
+</head>
+
+<body>
+
+    <!-- 准备一个具有宽高的div -->
+    <div id="main" style="width: 600px; height: 400px;"></div>
+
+    <script>
+        // 1. 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init( document.getElementById('main') );
+
+        // 2. 指定图表的配置项和数据
+        var option = {
+            title: {
+                text: '我的第一个图表'
+            },
+            // 鼠标移入图表的提示
+            tooltip: {},
+            // 图例
+            legend: {
+                data: ['销量', '亏损']
+            },
+            // x轴
+            xAxis: {
+                data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"]
+            },
+            // y轴
+            yAxis: {},
+            // 系列
+            series: [{
+                name: '销量',
+                type: 'line',
+                data: [14, 20, 62, 18, 20, 13]
+            },{
+                name: '亏损',
+                type: 'bar',
+                data: [5, 20, 36, 10, 10, 20]
+            }]
+        };
+
+        // 3. 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    </script>
+</body>
+
+</html>

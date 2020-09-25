@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 查找相同的数字
+
+        var str = '1234,2242,3131,4422,1123,6644,6436';
+        // 查找连续的四个数字, 第一位与第二位相同   第三位第四位相同
+        // 查找连续的四个数字, 第一位与第三位相同   第二位第四位相同
+        
+        var reg = /(\d)(\d)\1\2/g;
+        console.log(str.match(reg));
+    </script>
+</body>
+</html>

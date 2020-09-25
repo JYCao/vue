@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var a = 1, b = 2, c = 0, d = null, e = false;
+
+
+        // console.log(a || b); // a的结果；结果是1
+
+        // console.log(b || c); // 2
+
+        // console.log(c || e); // false
+
+        console.log(a && b); // 2
+
+        console.log(a && c); // 0
+
+        console.log(d && e); // null
+
+        // 0、 0.0 、null、 undefined、 ''、false、NaN 他们转成bool值是 false
+        // 除此之外，其他值转成bool，都是true
+        // if (c || e) {
+        //     console.log('aaaaa')
+        // } else {
+        //     console.log('bbbbb')
+        // }
+    </script>
+</body>
+</html>

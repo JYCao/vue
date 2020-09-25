@@ -1,0 +1,51 @@
+// 添加切换效果
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        (function(){
+        $(".sales a").click(function () {
+            $(this).addClass('active').siblings().removeClass('active');
+            // 获取data-xxx 属性值的
+            // 1. 用attr 获取
+            let key = $(this).attr('data-type');
+            // 2. 用data 获取
+            // let key = $(this).data('type');
+            // 3. 用dataset获取  他是html5新增的 属性
+            // let key = this.dataset.type;
+            option.series[0].data = data[key][0];
+            option.series[1].data = data[key][1];
+            // 配置数据改变,生成新的图表
+            lineChart.setOption(option);
+        });
+        // 自动切换效果
+            let i = 0
+        let time = setInterval(() => {
+            i++;
+            if (i == 4) i = 0;
+            $('.sales a').eq(i).click();
+        }, 1000);
+
+        // 鼠标移入 动态停止  鼠标离开继续执行定时器
+        $('.sales').hover(function () {
+            clearInterval(time);
+        }, function () {
+            time = setInterval(() => {
+                i++;
+                if (i == 4) i = 0;
+                $('.sales a').eq(i).click();
+            }, 1000);
+        })
+}) ();
+    </script>
+</body>
+
+</html>

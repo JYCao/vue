@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 创建动画函数 */
+        @keyframes abc {
+            0% {
+                width: 100px;
+            }
+
+            
+
+            100% {
+                /* background-color: white; */
+                /* transform: scale(2); */
+                width: 500px;
+            }
+
+            
+        }
+
+        div {
+            width: 200px;
+            height: 200px;
+            background-color: red;
+            /* 引入动画 */
+            animation: abc 10s linear infinite;
+
+        }
+
+
+        /* 总结: 动画是一个持续的过程,在css中创建动画,在需要动画的css中引入动画 */
+        /* 旋转rotate()  平移translate()  缩放scale()  从一阶段到另一阶段的持续变化 */
+    </style>
+</head>
+
+<body>
+    <div></div>
+</body>
+
+</html>

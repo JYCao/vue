@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 正常函数执行
+        // 会在栈内存中开辟控件,完成函数运行.结束之后就会释放掉内存
+        // let fn = ()=> {
+        //     let i=1;
+        //     console.log(i++)
+        // }
+        // fn(); //预计是1
+        // fn(); //预计还是1 因为内存释放,所以不会存现加加
+        // 但是闭包不会出现这种情况,他的函数运行后内存不会释放
+        // let fn = () => {
+        //     let i = 1;
+        //     function back() {
+        //         console.log(i++);
+        //     }
+        //     return back;
+        // }
+        // let test = fn();
+        // test(); //预计是1
+        // test(); // 外层函数释放 内层不会 2
+        // test(); // 外层函数释放 内层不会 3
+
+    // 复杂数据类型放到堆区  ,  简单数据类型放到栈区
+    // 从栈区提取简单数据类型和复杂数据类型的地址,每个复杂的数据类型都会在栈里面生成一个标记自己的地址
+
+    var obj = {
+        name:'张三',
+        age: 23,
+        sex: '男'
+    }
+    var obj1 = obj;
+    // 这里 boj1 只是从栈里面获得了obj的地址,而非对象本身
+    // 验证改变obj,看看obj1是否发生了变化
+    obj.name = '李四';
+    console.log(obj1);//预计名字改变成了李四
+
+    // 简单数据类型呢
+    var m = 'abcdefg';
+    var n = m;
+    m='fjidngjijjging';
+    console.log(n);//预计'abcdefg'
+
+
+  
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>

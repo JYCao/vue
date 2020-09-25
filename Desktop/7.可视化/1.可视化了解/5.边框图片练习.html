@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 500px;
+            height: 500px;
+            /* 1. 一定要有边框 */
+            border: solid 100px blue;
+            /* 2. 引入边框图片 */
+            border-image-source: url(./images/border.jpg);
+            /* 3. 分割边框图片 */
+            border-image-slice: 167 ;
+            /* 4. 设置边框图片宽度 */
+            border-image-width: 20px;
+            /* 设置图片重复环绕方式 */
+            border-image-repeat: round;
+            box-sizing: border-box;
+        }
+
+
+        /* 总结: 通过引入边框图片,切割后作为背景边框  
+        边框  引入边框图片    切割边框图片     边框图片的宽度设置   重复环绕方式设置 */
+    </style>
+</head>
+<body>
+    <div></div>
+</body>
+</html>

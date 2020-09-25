@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- reduce 方法求和 -->
+    <script>
+        var arr = [1, 2, 3, 4];
+        var m = arr.reduce((a, b) =>  a + b  ); //他们两个的和赋值给a,作为返回值
+        console.log(m);
+        var sum = 0;
+         arr.forEach(element => sum += element);
+        console.log(sum);
+    </script>
+</body>
+
+</html>

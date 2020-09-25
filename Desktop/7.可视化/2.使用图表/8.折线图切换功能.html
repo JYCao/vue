@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="./code/js/jquery.min.js"></script>
+    <script>
+        // 1. 获取切换到的元素
+        // 这里提前引用jQuery.js文件了
+        // 入门函数
+        $(function () {
+            // 1. 获取切换的元素
+            (function () {
+
+
+                $(".filter a").click(function () {
+                    let data = [
+                        {order:'100',eat:'400'},
+                        {order:'200',eat:'300'},
+                        {order:'300',eat:'200'},
+                        {order:'400',eat:'100'},
+ 
+                ];
+                    // 点击的按钮样式切换
+                    $(this).addClass("active").siblings().removeClass("active");
+                    // 下面内容的切换,这里实际上是上面两个曲线的的切换
+                    let i = $(this).index();
+                    $('.data h4').eq(0).html('data.one.order');
+             
+
+                });
+
+
+
+            })();
+
+
+
+
+
+
+
+        });
+
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>

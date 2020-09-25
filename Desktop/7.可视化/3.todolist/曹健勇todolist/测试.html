@@ -1,0 +1,11 @@
+$('body').on('click','a:contains("删除")' ,function(){
+    if (!confirm('是否删除')) {
+        return;
+    };
+    let index = $(this).data('index');
+    console.log(this);
+    console.log(index);
+    del(index);
+    
+    renderHtml();
+});

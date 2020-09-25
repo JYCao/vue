@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 匹配utf-8编码的中文。
+        // 思路：也是范围，[第一个中文-最后一个中文]
+        // 匹配中文，使用的是Unicode编码，实际写代码的时候，范围用Unicode编码表示
+
+        var str = 'hello你好';
+        var reg = /[\u4e00-\u9fa5]/g;
+
+        console.log(  str.match(reg)  )
+    </script>
+</body>
+</html>

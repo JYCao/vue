@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // function test() {
+        //     let i = 1;
+        //     console.log(i);
+        //     i++;
+        // }
+
+        // test(); // 1
+        // test(); // 1，因为函数运行完毕，内存释放了；第二次调用函数，相当于全新的一次调用
+        // test(); // 1
+
+
+        var obj = {
+            id: 1,
+            age: 20
+        }
+
+        function t () {
+            obj.age = 30;
+        }
+
+        t();
+
+        console.log(obj.age); // 30
+    </script>
+</body>
+</html>

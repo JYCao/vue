@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script> 
+        /*
+        toSting()和valueOf() 方法，属于 Object.prototype ；
+        意味着，所有对象都拥有这两个方法。
+
+        很多对象，都重写了这两个方法。比如 Array，比如 Date...
+
+        这两个方法，在特定环境下，会自动调用，无需手动调用
+
+        我们也可以自定义这两个方法
+        */
+
+        // ------------------- toString() ----------------
+        // 作用：把一个变量转成字符串。
+        // 什么时候会自动调用：
+            // - 当该对象被表示为一个文本值时，自动调用
+            // - 一个对象以预期的字符串方式引用时自动调用。
+
+        // let obj = {
+        //     age: 20,
+        //     sayHi: function () {
+        //         console.log(this.age);
+        //     },
+        //     // 重写toString()
+        //     toString: function () {
+        //         return 'hello';
+        //     }
+        // }
+
+        // 下面的代码，就是要把对象当做文本值使用了；此时，自动调用了toString，所以得到hello
+        // localStorage.setItem('a', obj);
+
+        // 对象以预期的字符串方式引用时自动调用
+        // console.log( `${obj}` );
+
+
+        // function test () {
+
+        // }
+        // // 重写函数的toString
+        // test.toString = function () {
+        //     return 'hello';
+        // }
+
+        // console.log(`${test}`)
+
+
+
+        // ------------------- valueOf() ----------------
+        // 作用：valueOf() 方法返回指定对象的原始值。
+        // console.log( new Date().valueOf() ); // 1600225908574
+        // console.log( [2, 3].valueOf() ); // 1600225908574
+
+        // let obj = {
+        //     age: 20,
+        //     sayHi: function () {
+        //         console.log(this.age);
+        //     },
+        //     // 重写valueOf方法
+        //     valueOf: function () {
+        //         return 'hello';
+        //     }
+        // }
+        // // 下面是对象和数字相加；需要先把对象转成原始值；然后在和数字相加
+        // // 把对象转成原始值的时候，valueOf自动调用
+        // console.log( obj + 123 ); // hello123
+
+
+        function test () {
+
+        }
+        // 重写函数的valueOf
+        test.valueOf = function () {
+            return 'hello';
+        }
+        // 把函数当做原始值使用的时候，自动调用valueOf
+        console.log(test+123);
+    </script>
+</body>
+</html>

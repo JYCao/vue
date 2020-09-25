@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var str = 'This is a ES6\nThat is a CSS3';
+        // alert(str);
+        // var reg = /正则表达式语法/修饰符;
+
+        // var reg = /T/gi;
+
+        var reg = /^That/gm; // 匹配每一行的开头。
+
+        console.log(  str.match(reg)  )
+
+        /*
+        g 表示全局匹配
+        i 不区分大小写
+        m 多行识别匹配
+        */
+    </script>
+</body>
+</html>

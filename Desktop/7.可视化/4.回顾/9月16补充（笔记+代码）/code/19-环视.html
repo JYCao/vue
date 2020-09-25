@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // var str = 'ab ac ad';
+        // 需求：查找a，要求a的后面必须是b
+        // var reg = /a(?=b)/g;
+
+        // var str = 'es6 and css3';
+        // var reg = /[a-z]+(?=\d)/g;
+
+
+        // var str = 'ab ac ad';
+        // // 需求，查找a，要求a的后面不能是b
+        // var reg = /a(?!b)/g;
+        // console.log(  str.match(reg)  )
+
+
+        // 排除，在所有字母中排除bcd
+        var str = 'abcdefg';
+        var reg = /(?![bcd])[a-z]/g;
+
+        console.log(  str.match(reg)  )
+    </script>
+</body>
+</html>

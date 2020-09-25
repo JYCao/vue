@@ -1,0 +1,106 @@
+body {
+  background: url('../images/bg.jpg');
+  background-size: cover;
+  margin: 0;
+  padding: 0;
+  color: #4c9bfd;
+  line-height: 1.15;
+  font-size: 0.5rem;
+}
+.viewport {
+  background: url('../images/logo.png') no-repeat;
+  background-size: contain;
+  display: flex;
+  min-width: 1024px;
+  max-width: 1920px;
+  padding: 3.667rem 0.833rem 0;
+}
+.column {
+  flex: 3;
+}
+.column:nth-child(2) {
+  flex: 4;
+  margin: 1.333rem 0.833rem 0;
+}
+h4,h3,ul{
+  margin: 0;
+  padding: 0;
+  font-weight: normal;
+}
+ul{
+  list-style: none;
+}
+a{
+  text-decoration: none;
+}
+/* 设置图片边框 */
+.panel {
+  border: solid;
+  border-width:  2.125rem 1.583333rem 0.833333rem 5.5rem;
+  /*  */
+  border-image: url(../images/border.png);
+  border-image-slice: 51 38 20 132;
+  border-image-width: 2.125rem 1.583333rem 0.833333rem 5.5rem;
+  /* border-image-repeat: ;默认拉伸 */
+  position: relative;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+}
+.inner {
+  position: absolute;
+  top: -2.125rem;
+  right: -1.583333rem;
+  bottom: -0.833333rem;
+  left: -5.5rem;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.overview {
+  height: 4.583rem;
+}
+
+.overview h4 {
+  font-size: 1.167rem;
+  color: #fff;
+  margin-bottom: 0.333rem;
+  padding-left: 0.2rem;
+}
+.overview span {
+  font-size: 0.667rem;
+  color: #4c9bfd;
+
+}
+/* 监控区域 */
+
+.monitor .inner .tabs {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  padding: 0 1.125rem;
+} 
+.monitor .tabs a.active {
+  color: #fff;
+}
+.monitor .tabs a:nth-child(1) {
+  border-right: 0.083rem solid #00f2f1;
+}
+
+@keyframes scroll {
+  0% {}
+  100% {
+    transform: translateX(-50%);
+  }
+}
+.monitor .marquee-view {
+  overflow: hidden;
+}
+/* 使用 */
+.monitor .marquee {
+  animation: scroll 15s linear infinite;
+}
+.monitor .marquee:hover {
+  animation-play-state: paused;
+}

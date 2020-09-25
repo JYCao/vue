@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // match是字符串方法，但是它支持正则表达式
+        // match会把匹配的结果返回
+
+        let str = 'aa  aaa  aaaa  aaaaa';
+        let reg = /a{3,}/g; // global 全局的意思
+        // match默认匹配一次就会结束，如果没有匹配的结果，返回null
+        console.log( str.match(reg) );
+    </script>
+</body>
+</html>

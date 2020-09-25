@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 200px;
+            height: 200px;
+            /* background-color: red; */
+        }
+    </style>
+</head>
+
+<body>
+    <div ></div>
+    <div ></div>
+    <div  class="btn"></div>
+    <div ></div>
+    <div ></div>
+    <div ></div>
+    <div ></div>
+    <script src="./echarts.min.js"></script>
+    <script src="./js/jquery.min.js"></script>
+    <script>
+        // echarts:  在一块区域上通过图表的形式来展示数据
+        // 原生js
+        // 1. 先要引入echarts.js文件
+        // 2. 初始化图表
+        // var myChart = echarts.init(document.querySelector('div'));
+
+        // // 3.配置数据,准备数据
+        // var option = {
+        //     xAxis: {
+        //         type: 'category',
+        //         data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+        //     },
+        //     yAxis: {
+        //         type: 'value'
+        //     },
+        //     series: [{
+        //         data: [820, 932, 901, 934, 1290, 1330, 1320],
+        //         type: 'line'
+        //     }]
+        // };
+
+
+        // // 4.数据传入图图表.生成图表
+
+        // myChart.setOption(option);
+        // 通过jQuery来实现图表
+
+
+        // 1.引入echarts.js文件
+        // 2. 在一块区域内把数据具现成图表
+        // 1. 给那块区域初始化图表
+        // 这里jQuery对象要转成DOM对象,因为init方法没有封装到jQuery中
+        var area = echarts.init($('div')[0]);
+        console.log($('.btn'));
+
+        // 2. 配置数据
+        var option = {
+            xAxis: {
+                type: 'category',
+                data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+            },
+            yAxis: {
+                type: 'value'
+            },
+            series: [{
+                data: [820, 932, 901, 934, 1290, 1330, 1320],
+                type: 'line'
+            }]
+        };
+
+
+        // 把数据与初始化图表结合,生成图表
+        area.setOption(option);
+
+
+// 总结: 想要在一定区域内根据数据生成相应的图表方法
+// 1. 需要引用echarts.js 问及那
+// 2. 需要初始化一个图表
+// 3. 需要配置数据
+// 4. 需要装配数据,生成图表
+// 注意点: 初始化图表方法适用于js原生 ,jQuery里面没有封装
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>

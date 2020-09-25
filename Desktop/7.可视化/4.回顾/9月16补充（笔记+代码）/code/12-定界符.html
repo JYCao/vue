@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // let str = 'javascript is the best';
+        // let reg = /^a/g;
+        // let reg = /ript$/g;
+        // let reg = /\bbe/g;
+        // let reg = /ipt\b/g;
+
+
+        let str = 'php';
+        let reg = /^php$/g;
+        // let reg = /\bphp\b/g;
+
+        console.log( str.match(reg) );
+
+        /*
+        ^ 插入号，表示从字符串的开头进行匹配
+        $ 表示从字符串的结尾开始进行匹配
+        \b 匹配每一个单词的边界；\b放到开头，匹配单词的开头；\b放到后面，匹配单词的结尾
+
+        ^xxx$ 只匹配xxx，即匹配整个字符串。
+        */
+    </script>
+</body>
+</html>

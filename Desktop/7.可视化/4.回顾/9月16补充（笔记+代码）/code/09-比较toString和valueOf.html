@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        let obj = {
+            age: 20,
+            
+            valueOf: function () {
+                return '2'
+            },
+
+            toString: function () {
+                return '1'
+            }
+
+        }
+
+        // 如果toString和valueOf同时存在
+        
+        // 在下面的情况下，会优先调用toString
+            // - 当该对象被表示为一个文本值时，自动调用
+            // - 一个对象以预期的字符串方式引用时自动调用。
+        // 除了上面的两种情况之外，优先调用valueOf方法
+        
+        console.log(`${obj}` + 123); // 1123
+        console.log(obj + 123); // 2123
+    </script>
+</body>
+</html>

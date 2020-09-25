@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+        fn(1)(2)(3)
+        fn(1)(2)
+        fn(1)(2)(3)(4)
+        fn(1)(2)(3)(4)(5)
+
+        fn(1)(2, 3)
+
+        fn(1, 2)(3)
+
+        fn(1, 2, 3)
+        */
+
+
+        // 1. 闭包 （out函数生成的内存不释放）
+        function out (...c) {
+            var args = [...c]; // [1, 2, 3]
+            function inner (...d) {
+                args = [...args, ...d];  
+                console.log(args,'a'); // [1, 2, 3, 4, 5, 6, 7, 8]
+                // 返回函数
+                return inner;
+            }
+            // 给inner函数，设置valueOf或者toString方法
+            console.log(args);
+            // inner.valueOf = function () {
+            //     return args.reduce((a, b) => a + b);
+            // }
+            return inner;
+        }
+
+        // out(1) // 得到inner函数
+        // out(1)(2) // 调用inner，得到inner
+        // console.log( out(1, 2, 3)    (4, 5)    (6, 7, 8) + 0 ); // 调用inner，得到inner
+        // console.log( out(1)(2)(3)(4) + 0 ); // 调用inner，得到inner
+        console.log( out(1, 2)(3, 4)(5) + 0 ); // 调用inner，得到inner
+        // 加0 是为了 输出函数的原始值
+    </script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    div {
+        width: 20.833333rem;
+        height: 20.833333rem;
+        background:red;
+        font-size: 0.666667rem;
+    }
+</style>
+
+<body>
+        
+    <div>这是一段话</div>
+
+
+
+
+
+    <script src="./js/jquery.min.js"></script>
+    <script type="text/javascript">
+        function setFont() {
+            // 原生js,目的跟随页面宽度变而变化
+            // 1. 获取整个html
+            let html = document.querySelector('html');
+            // 2. 获取实时宽度
+            let width = html.clientWidth;
+            // 3. 按照比例设置字体
+            let fontsize = width / 80 + 'px';
+            // 4. 将这个字体加到页面上
+            html.style.fontSize = fontsize;
+        }
+        setFont();
+        // 需要添加客户端改变宽度事件.不然,仅仅执行一次
+        window.onresize = function(){
+            setFont();
+        }
+          
+        // jQuery 练习rem适配
+            // function setFont () {
+                
+            // let html = $('html');
+            // let width = html.width();
+            // let fontsize = width/80 +'px';
+            // html.css('font-size',fontsize);
+            // }
+            // setFont();
+            // $(window).resize(function() {
+            //     setFont();
+            // })
+    
+
+    // 总结: rem 适配总结  
+    // 他的原理就是html里面的元素根据客户端宽度的变化而变化
+    // 1. 获取整个html
+    // 2. 获取实时的宽度
+    // 3. 通过字体大小来制定换算比例
+    // 4. 将这种换算比例的字体属性添加到html中去
+    // 5. 添加触发事件 onresize,调用上面四部封装的函数
+
+    </script>
+</body>
+
+</html>

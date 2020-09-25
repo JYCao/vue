@@ -1,0 +1,428 @@
+/* body */
+
+body {
+  background: url('../images/bg.jpg') no-repeat;
+  background-size: cover;
+  margin: 0;
+  padding: 0;
+  color: #4c9bfd;
+  line-height: 1.15;
+  font-size: 0.5rem;
+}
+
+/* 最大的盒子 viewport */
+
+.viewport {
+  background: url('../images/logo.png') no-repeat;
+  background-size: contain;
+  min-height: 780px;
+  /* 临时给个高度 */
+  min-width: 1024px;
+  max-width: 1920px;
+  padding: 3.667rem 0.833rem 0;
+  display: flex;
+}
+
+.column {
+  flex: 3;
+}
+
+.column:nth-child(2) {
+  flex: 4;
+  margin: 1.333rem 0.833rem 0;
+}
+
+h4, h3, ul {
+  margin: 0;
+  padding: 0;
+  font-weight: normal;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* 公共面板样式：设置图片边框 */
+
+.panel {
+  /* 使用图片当做边框，必须先设置盒子的border */
+  border: solid 1rem transparent;
+  border-width: 2.125rem 1.583rem 0.833rem 5.5rem;
+  border-image-source: url('../images/border.png');
+  border-image-slice: 51 38 20 132;
+  border-image-width: 2.125rem 1.583rem 0.833rem 5.5rem;
+  position: relative;
+  margin-bottom: 0.833rem;
+  box-sizing: border-box;
+}
+
+.inner {
+  position: absolute;
+  top: -2.125rem;
+  right: -1.583rem;
+  bottom: -0.833rem;
+  left: -5.5rem;
+  padding: 1rem 1.5rem;
+}
+
+.panel h3 {
+  font-size: 0.833rem;
+  color: #fff;
+}
+
+/* ****************** 概览区域 ***************** */
+
+.overview {
+  height: 4.583rem;
+}
+
+.overview .inner {
+  display: flex;
+  justify-content: space-between;
+}
+
+.overview h4 {
+  font-size: 1.167rem;
+  color: #fff;
+  margin-left: 0.2rem;
+  margin-bottom: 0.333rem;
+}
+
+.overview span {
+  font-size: 0.667rem;
+  color: #4c9bfd;
+}
+
+/* ****************** 监控区域 ***************** */
+
+.monitor {
+  height: 20rem;
+}
+
+.monitor .inner {
+  padding: 1rem 0;
+  display: flex;
+  /* 改变主轴方向 */
+  flex-direction: column;
+}
+
+.monitor .tabs {
+  padding: 0 1.5rem;
+  margin-bottom: 0.833rem;
+}
+
+.monitor .tabs a {
+  color: #1950c4;
+  padding: 0 1.125rem;
+  font-size: 0.75rem;
+}
+
+.monitor .tabs a:first-child {
+  padding-left: 0;
+  border-right: solid 0.083rem #00f2f1;
+}
+
+.monitor .tabs .active {
+  color: #fff;
+}
+
+.monitor .content {
+  flex: 1;
+  overflow: hidden;
+  display: none;
+}
+
+.monitor .head {
+  line-height: 1.05;
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 0.5rem 1.5rem;
+  color: #68d8fe;
+  font-size: 0.583rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.monitor .row {
+  line-height: 1.05;
+  padding: 0.5rem 1.5rem;
+  /* color: #68d8ff; */
+  font-size: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+
+.monitor .col {
+  width: 3.2rem;
+}
+
+.monitor .col:nth-child(2) {
+  width: 8.4rem;
+}
+
+.monitor .icon-dot {
+  position: absolute;
+  left: 0.64rem;
+  opacity: 0;
+}
+
+/* 鼠标移入 */
+
+.monitor .row:hover {
+  color: #68d8ff;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.monitor .row:hover .icon-dot {
+  opacity: 1;
+}
+
+.monitor .marquee-view {
+  overflow: hidden;
+}
+
+/* 定义动画 */
+
+@keyframes scroll-top {
+  0% {}
+  100% {
+    transform: translateY(-50%)
+  }
+}
+
+/* 使用动画 */
+
+.monitor .marquee {
+  animation: scroll-top 15s linear infinite;
+}
+
+/* 鼠标移入 div.marquee ,让动画暂停 */
+
+.monitor .marquee:hover {
+  /* 动画播放状态：暂停 */
+  animation-play-state: paused;
+}
+
+/* 点位 */
+
+.point {
+  height: 14.167rem;
+}
+
+.point .chart {
+  display: flex;
+  margin-top: 1rem;
+  justify-content: space-between;
+}
+
+.point .pie {
+  width: 13rem;
+  height: 10rem;
+  margin-left: -0.4rem;
+}
+
+.point .data {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 7rem;
+  padding: 1.5rem 1.25rem;
+  box-sizing: border-box;
+  background-image: url(../images/rect.png);
+  background-size: cover;
+}
+
+.point h4 {
+  margin-bottom: 0.5rem;
+  font-size: 1.167rem;
+  color: #fff;
+}
+
+.point span {
+  display: block;
+  color: #4c9bfd;
+  font-size: 0.667rem;
+}
+
+/* 地图  */
+
+.map {
+  height: 24.1rem;
+  margin-bottom: 0.833rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.map h3 {
+  line-height: 1;
+  padding: 0.667rem 0;
+  margin: 0;
+  font-size: 0.833rem;
+  color: #fff;
+}
+
+.map .icon-cube {
+  color: #68d8fe;
+}
+
+.map .chart {
+  flex: 1;
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.map .geo {
+  width: 100%;
+  height: 100%;
+}
+
+/* 用户模块 */
+
+.users {
+  height: 14.167rem;
+  display: flex;
+}
+
+.users .chart {
+  display: flex;
+  margin-top: 1rem;
+}
+
+.users .bar {
+  width: 24.5rem;
+  height: 10rem;
+}
+
+.users .data {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 7rem;
+  padding: 1.5rem 1.25rem;
+  box-sizing: border-box;
+  background-image: url(../images/rect.png);
+  background-size: cover;
+}
+
+.users h4 {
+  margin-bottom: 0.5rem;
+  font-size: 1.167rem;
+  color: #fff;
+}
+
+.users span {
+  display: block;
+  color: #4c9bfd;
+  font-size: 0.667rem;
+}
+
+/* 订单 */
+
+.order {
+  height: 6.167rem;
+}
+
+.order .filter {
+  display: flex;
+}
+
+.order .filter a {
+  display: block;
+  height: 0.75rem;
+  line-height: 1;
+  padding: 0 0.75rem;
+  color: #1950c4;
+  font-size: 0.75rem;
+  border-right: 0.083rem solid #00f2f1;
+}
+
+.order .filter a:first-child {
+  padding-left: 0;
+}
+
+.order .filter a:last-child {
+  border-right: none;
+}
+
+.order .filter a.active {
+  color: #fff;
+  font-size: 0.833rem;
+}
+
+.order .data {
+  display: flex;
+  margin-top: 0.833rem;
+}
+
+.order .item {
+  width: 50%;
+}
+
+.order h4 {
+  font-size: 1.167rem;
+  color: #fff;
+  margin-bottom: 0.417rem;
+}
+
+.order span {
+  display: block;
+  color: #4c9bfd;
+  font-size: 0.667rem;
+}
+
+/* 销售区域 */
+
+.sales {
+  height: 10.333rem;
+}
+
+.sales .caption {
+  display: flex;
+  line-height: 1;
+}
+
+.sales h3 {
+  height: 0.75rem;
+  padding-right: 0.75rem;
+  border-right: 0.083rem solid #00f2f1;
+}
+
+.sales a {
+  padding: 0.167rem;
+  font-size: 0.667rem;
+  margin: -0.125rem 0 0 0.875rem;
+  border-radius: 0.125rem;
+  color: #0bace6;
+}
+
+.sales a.active {
+  background-color: #4c9bfd;
+  color: #fff;
+}
+
+.sales .inner {
+  display: flex;
+  flex-direction: column;
+}
+
+.sales .chart {
+  flex: 1;
+  padding-top: 0.6rem;
+  position: relative;
+}
+
+.sales .label {
+  position: absolute;
+  left: 1.75rem;
+  top: 0.75rem;
+  color: #4996f5;
+  font-size: 0.583rem;
+}
+
+.sales .line {
+  width: 100%;
+  height: 100%;
+}
