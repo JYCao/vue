@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+ <meta charset="UTF-8" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+ <title>html页面</title>
+ <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.11/vue.js"></script>
+ <style>
+   body{
+     background-color: #eee;
+   }
+   #app{
+     background-color:#fff;
+     width: 500px;
+     margin: 50px auto;
+     box-shadow: 3px 3px 3px rgba(0 , 0, 0, 0.5);padding:2em;
+    }
+   .box{
+     padding: 1em;
+     border:1px solid #ccc;
+     margin:1em;
+   }
+   </style>
+ </head>
+ <body>
+   <div id="app">
+     <h2>html页面</h2>
+     <!-- <p>
+       高寿：<input  value="28"/>
+     </p> -->
+     <p>
+      高寿：<input v-bind:value="age1"/>(从数据到视图)
+    </p>
+    <p>
+      高寿：<input v-model.cli="age2"/>(1.从数据到视图. 2. 从视图到数据)
+    </br>{{age2}}
+    </p>
+   </div>
+   <script>
+     
+      var vm = new Vue({
+        el: '#app',
+        data: {
+          age1: 18,
+          age2: 28
+        }
+      })
+   </script>
+ </body>
+</html>

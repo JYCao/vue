@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+ <meta charset="UTF-8" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+ <title>html页面</title>
+ <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.11/vue.js"></script>
+ <style>
+   body{
+     background-color: #eee;
+   }
+   #app{
+     background-color:#fff;
+     width: 500px;
+     margin: 50px auto;
+     box-shadow: 3px 3px 3px rgba(0 , 0, 0, 0.5);padding:2em;
+    }
+   .box{
+     padding: 1em;
+     border:1px solid #ccc;
+     margin:1em;
+   }
+   </style>
+ </head>
+ <body>
+   <div id="app">
+     <h2>html页面</h2>
+     <div v-on:click="hClickDiv">
+       父元素
+       <button v-on:click.stop="hClickBtn">子元素</button>
+       <button v-on:click.stop="hClickBtn">子元素-不会冒泡</button>
+       <a href="http://www.baidu.com" v-on:click.prevent="hClickA">百度</a> 
+       <a href="http://www.baidu.com" v-on:click.prevent="hClickA">百度-不会跳转</a> 
+       <a href="http://www.baidu.com" v-on:click.stop.prevent="hClickA">百度-不会跳转-不会冒泡</a> 
+       <button v-on:click.once="hClickBtn">子元素-它的动作只执行一次</button>
+       <!-- <button v-on:click.stop.once="hClickBtn">子元素-它的动作只执行一次-不冒泡</button> -->
+
+     </div>
+     <hr>
+     <div v-on:click.self="hClickDiv">
+        父元素,只有在父元素点击才会执行，如果你是在子元素上点击，再冒泡到父元素，则不会执行
+        <button v-on:click="hClickBtn">子元素</button>
+      </div>
+   </div>
+   <script>
+      // .stop： 阻止冒泡
+      // .prevent：阻止默认行为
+      // .once: 只执行一次
+      // .self :当前元素自身时触发处理函数时才会触发函数
+
+     // vue中的事件也有冒泡机制。
+        // 在子元素上的点击事件，也会触发父元素上的点击事件。
+        
+        // 如果要阻止冒泡，只需给事件添加个修饰符.stop
+        //     格式： 事件名.stop
+        //     示例：click.stop
+
+        // 如果要阻止默认行为，只需给事件添加个修饰符.prevent
+        //     格式： 事件名.prevent
+        //     示例：click.prevent
+
+        // 如果需要，也可以一起使用，相当于两个效果叠加
+        //     格式： 事件名.prevent.stop
+        //     示例：click.prevent.stop
+
+        // v-on: ----简写成---> @
+      var vm = new Vue({
+        el: '#app',
+        methods: {
+            hClickDiv(){
+                console.log('点击了父元素');
+            },
+            hClickBtn(){
+                console.log('点击了子元素')
+            },
+            hClickA(){
+                alert('lalal')
+            }
+        },
+    
+      })
+   </script>
+ </body>
+</html>
+
+<!-- 
+    stop 
+    prevent
+    once 
+    self
+ -->

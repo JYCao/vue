@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <div id="app">
+    <div class="container">
+        筛选: <input type="text" v-model="keyword" >
+      <table class="table table-bordered table-hover">
+        <thead>
+          <tr>
+            <th>编号</th>
+            <th>资产名称</th>
+            <th>创建时间</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(item,index) in cFilter" >
+            <td>{{item.id}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.price}}</td>
+            <td><a href="#" v-on:click="hDel(index)">删除</a></td>
+          </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="4" >总计:{{cTotalMoney}}</td>
+            </tr>
+        </tfoot>
+      </table>
+      <form action="">
+        <input type="text" v-model="asset.name" ><br>
+        <input type="text" v-model.number="asset.price" ><br>
+        <button v-on:click.prevent="hAdd()" >添加资产</button>
+      </form>
+    </div>
+  </div>
+
+ <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.11/vue.js"></script>
+
+  <script>
+
+    new Vue({
+      el: '#app',
+      data:{
+        list: [
+          { id: 1, name: '外套', price: 99 },
+          { id: 2, name: '裤子', price: 34 },
+          { id: 3, name: '鞋', price: 25.4 },
+          { id: 4, name: '头发', price: 19900 }
+        ],
+        // 接收页面数据
+        asset: {
+            name: '项链',
+            price: '100'
+        },
+        // 接收筛选关键孩子
+        keyword:''
+      },
+      computed: {
+        //   总价格
+          cTotalMoney(){
+              let m=0;
+             this.list.forEach(item=>m+=item.price);
+             return m;
+          },
+        //   筛选  keyword+数据列表形成新的列表
+          cFilter(){
+              if(this.keyword===''){
+                  return this.list
+              }
+               return this.list.filter(item=>item.name.includes(this.keyword));
+          }
+      },
+      methods: {
+        //   点击添加
+          hAdd(){
+              const {name,price} = this.asset
+              this.list.push({
+                id: this.list.length+1,
+                name,
+                price
+              })
+          },
+        //   点击删除
+          hDel(idx){
+              if(confirm(`你确定要删除${this.list[idx].name}`))
+              this.list.splice(idx,1);
+          },
+
+      }
+    })
+  </script>
+</body>
+</html>

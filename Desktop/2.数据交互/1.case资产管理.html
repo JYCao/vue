@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <div id="app">
+    <div class="container">
+        搜索:<input type="text"  v-model="keyword">
+      <table class="table table-bordered table-hover">
+        <thead>
+          <tr>
+            <th>编号</th>
+            <th>资产名称</th>
+            <th>创建时间</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody v-if="list.length" >
+          <tr v-for="(item,index) in cFilterList">
+            <td>{{item.id}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.price | fCurrency}}</td>
+            <td><a href="#" v-on:click.prevent="hDel(index)">删除</a></td>
+          </tr>
+        </tbody>
+        <tbody v-else>
+            <tr>
+                <td colspan="4">没有数据!</td>
+            </tr>
+        </tbody>
+        <tfoot >
+
+            <tr>
+                <td colspan='4'>总计:{{cTotalMoney | fCurrency}}</td>
+
+            </tr>
+        </tfoot>
+      </table>
+    </div>
+    <form action="">
+        <input  type="text" v-model="asset.name"> <br>
+        <input type="text" v-model="asset.price"> <br>
+        <button v-on:click.prevent="hAddAsset()">添加资产</button>
+      </form>
+  </div>
+
+ <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.11/vue.js"></script>
+
+  <script>
+
+   let vm = new Vue({
+      el: '#app',
+      data:{
+        list: [
+          { id: 1, name: '外套', price: 99 },
+          { id: 2, name: '裤子', price: 34 },
+          { id: 3, name: '鞋', price: 25.4 },
+          { id: 4, name: '头发', price: 19900 }
+        ],
+        asset: {
+            name:'杯子',
+            price: '10',
+        },
+        keyword:''
+      },
+      methods: {
+          hAddAsset(){
+            //   作个判断,任何一个输入框为空都不能完成提交
+            if(this.asset.name===""){
+                return
+            }
+            if(this.asset.price===""){
+                return
+            }
+              this.list.push({
+                id:(this.list.length+1),
+                name:this.asset.name,
+                price : this.asset.price
+              })
+          },
+          hDel(idx){
+            //   提示信息
+            //用到了模板字符串,这个里面也能用$
+            if(confirm(`你真的要删除${this.list[idx].name}吗?`)){
+                this.list.splice(idx,1);
+            }
+     
+          }
+          
+      },
+      computed: {
+        cTotalMoney(){
+            let m =0;
+            this.list.forEach(item=>m+=item.price);
+            return m;
+        },
+        cFilterList(){
+            if(this.keyword===''){
+                return this.list
+            }
+            const filterList = this.list.filter(item=>item.name.includes(this.keyword));
+            return filterList;
+        }
+      },
+      filters: {
+        fCurrency:function(value, _currency) {
+          // 全局匹配： 三位连续，且之后也是数值 的数值
+          var digitsRE = /(\d{3})(?=\d)/g;
+          value = parseFloat(value);
+          if (!isFinite(value) || !value && value !== 0) return '';
+          _currency = _currency != null ? _currency : '￥';
+          // 保留两位小数，并整体转成字符串
+          var stringified = Math.abs(value).toFixed(2);
+
+          // 获取整数部分。-3表示倒数3位的位置
+          var _int = stringified.slice(0, -3);
+
+          // 整数部分以3为基准长度划分，剩下几位
+          var i = _int.length % 3;
+          // 取出头部。
+          // 如：12345 ----> 12,
+          var head = i > 0 ? _int.slice(0, i) + (_int.length > 3 ? ',' : '') : '';
+          // 取出小数点部分
+          // 如：12345.67 ----> .67
+
+          var _float = stringified.slice(-3);
+          var sign = value < 0 ? '-' : '';
+          return _currency + sign + head + _int.slice(i).replace(digitsRE, '$1,') + _float;
+        }
+      },
+
+
+    })
+  </script>
+</body>
+</html>

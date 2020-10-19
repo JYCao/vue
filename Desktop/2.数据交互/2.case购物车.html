@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    h4,
+    p {
+      margin: 0;
+      font-weight: normal;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    body {
+      background-color: #eee;
+    }
+
+    #app {
+      background-color: #fff;
+      width: 900px;
+      margin: 50px auto;
+      text-align: center;
+      box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);
+      padding: 1em 2em;
+    }
+
+    .list {
+      padding: 1em;
+      width: 100%;
+      box-sizing: border-box;
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .book {
+      position: relative;
+      flex-basis: 22%;
+      margin-right: 2%;
+      margin-bottom: 1em;
+      text-align: center;
+      background-color: #fff;
+      padding: 1em 0;
+      transition: all .2s linear;
+    }
+
+    .book:hover {
+
+      box-shadow: 0 15px 30px rgba(0, 0, 0, .1);
+      transform: translate3d(0, -2px, 0);
+
+    }
+
+    .title {
+      line-height: 2em;
+      margin: 0;
+      padding: 0;
+    }
+
+    .figure img {
+      width: 150px;
+      height: 150px;
+    }
+
+    .desc {
+      margin: 0;
+      font-size: 16px;
+    }
+
+    .price {
+      margin: 0;
+      font-size: 14px;
+    }
+
+    .btn {
+      cursor: pointer;
+      position: absolute;
+      right: 0.8em;
+      top: 0.8em;
+      border: none;
+      color: #ff6700;
+      padding: .5em .5em;
+      font-size: 12px;
+    }
+
+    .btn:active {
+      border: none;
+      user-select: none;
+      outline: 0 none !important;
+    }
+
+    .btn:hover {
+      background-color: #ff6700;
+      color: #fff
+    }
+
+    .selected {
+      border: 2px solid #ccc;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, .3);
+    }
+
+    .cart {
+      border: 1px solid #eee;
+      background-color: #fff;
+      text-align: center;
+      position: fixed;
+      padding: 1em;
+      right: 100px;
+      top: 200px;
+    }
+  </style>
+</head>
+<!-- 遍历循环的位置,肯定不能加判断啊-->
+<body>
+  <div id="app">
+    <h3>我的购物车</h3>
+    <p>购物车书籍的数量:{{bookList.length}}</p>
+    <p>购物车书籍的总价格:{{totalPrice}}</p>
+    <div v-if="bookList.length" class="list">
+      <div  v-for="(item,index) in bookList" class="book" :title="item.name">
+        <a href="">
+          <div class="figure">
+            <img :src="item.picSrc" alt="当你学会独处（学会独处，学会与自己谈话）">
+          </div>
+          <h4 class="title" :title="item.name">{{item.name}}</h4>
+          <p class="desc"></p>
+          <p class="price"><span class="num">{{item.price}}</span></p>
+        </a>
+        <button class='btn' title="移出购物车" v-on:click.prevent="hDel(index)">-</button>
+        
+      </div>
+   
+    </div>
+    <p v-else>购物车为空,请前往<a href="">宇宙畅销榜单</a></p>
+    </div>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.11/vue.js"></script>
+  <script>
+   let vm = new Vue({
+        el: '#app',
+        data: {
+            bookList : [
+      {
+        name: '当你学会独处',
+        price: 29.9,
+        picSrc: 'http://img3m8.ddimg.cn/70/15/28522168-1_l_3.jpg'
+      },
+      {
+        name: 'JavaScript高级程序设计',
+        price: 78,
+        picSrc: 'http://img3m3.ddimg.cn/2/21/22628333-1_b_2.jpg'
+      },
+      {
+        name: '断舍离',
+        price: 29.9,
+        picSrc: 'http://img3m3.ddimg.cn/68/20/23271503-1_l_10.jpg'
+      },
+      {
+        name: '王子与贫儿',
+        price: 39.9,
+        picSrc: 'http://img3m0.ddimg.cn/67/20/28535530-1_l_3.jpg'
+      },
+      {
+        name: '高效能人士的七个习惯',
+        price: 59.3,
+        picSrc: 'http://img3m2.ddimg.cn/3/4/25253022-1_b_11.jpg'
+      }
+    ]
+        },
+
+    computed: {
+        totalPrice:function(){
+            let m =0;
+            // 这里的this指向实例化对象
+            this.bookList.forEach(item => m+=item.price);
+            return m;
+        }
+    },
+    methods: {
+      hDel(idx){
+        this.bookList.splice(idx,1);
+      }
+    }
+    })
+    
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  
+</head>
+<body>
+    <h1>模板引擎页面</h1>
+    <div id="app">123</div>
+    <script type="text/html" id="tpl">
+        <p>{{name}}</p>
+        <p>{{age}}</p>
+        <p>{{sex}}</p>
+
+    </script>
+    <script src="https://unpkg.com/art-template/lib/template-web.js"></script>
+    <script>
+        let data = {
+            name: '张三',
+            age: 13,
+            sex: '男'
+
+        }
+        let html = template('tpl',data)
+        document.getElementById('app').innerHTML=html;
+    </script>
+     
+</body>
+</html>

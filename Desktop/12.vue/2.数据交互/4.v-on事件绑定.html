@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+ <meta charset="UTF-8" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+ <title>html页面</title>
+ <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.11/vue.js"></script>
+ <style>
+   body{
+     background-color: #eee;
+   }
+   #app{
+     background-color:#fff;
+     width: 500px;
+     margin: 50px auto;
+     box-shadow: 3px 3px 3px rgba(0 , 0, 0, 0.5);padding:2em;
+    }
+   .box{
+     padding: 1em;
+     border:1px solid #ccc;
+     margin:1em;
+   }
+   </style>
+ </head>
+ <body>
+   <div id="app">
+     <h2>html页面</h2>
+     工资:{{salary}}
+     <!-- 点击之后： 更新到10500 -->
+     <button v-on:click="salary+=100">增加100</button>
+
+     <!-- 函数（）可以写也可以不写 -->
+     <button v-on:click="">+500并税后</button>
+     <button v-on:click="hAdd500">+500并税后</button>
+     <button v-on:click="hAdd(2000)">随机奖金2000</button>
+     <button v-on:click="hAdd(1000)">随机奖金1000</button>
+   </div>
+   <script>
+    // 给某个元素绑定事件的三种格式
+    // # 格式一：把要执行的代码直接写在""内部。适合少量代码
+    // <标签 v-on:事件名="要执行的代码"></标签>
+
+    // # 格式二：指向methods中的定义的函数
+    // <标签 v-on:事件名="methods中的函数"></标签>
+
+    // # 格式三：指向methods中的定义的函数，并传入参数
+    // <标签 v-on:事件名="methods中的函数(实参)"></标签>
+      var vm = new Vue({
+        el: '#app',
+        data: {
+          salary: 10000
+        },
+        methods: {
+          hAdd (val) {
+              this.salary=this.salary+m
+
+          },
+          hAdd500 () {
+            // this.salary = this.salary + 500
+
+            this.salary = (this.salary + 500) * 0.95 // -5%
+          }
+        }
+      })
+   </script>
+ </body>
+</html>

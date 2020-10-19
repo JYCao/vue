@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+ <meta charset="UTF-8" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+ <title>学习v-model在表单元素中的使用</title>
+ <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.11/vue.js"></script>
+ <style>
+   body{
+     background-color: #eee;
+   }
+   #app{
+     background-color:#fff;
+     width: 500px;
+     margin: 50px auto;
+     box-shadow: 3px 3px 3px rgba(0 , 0, 0, 0.5);padding:2em;
+    }
+   .box{
+     padding: 1em;
+     border:1px solid #ccc;
+     margin:1em;
+   }
+   </style>
+ </head>
+ <body>
+   <div id="app">
+     <h2>学习v-model在表单元素中的使用</h2>
+      <div class="box">
+          <!-- 1. 普通文本框  -->
+          用户名：<input v-model="name"/>
+      </div>
+
+      <div class="box" >
+          <!-- 2. 单选  
+          由value来决定用户选中的值 -->
+          性别：
+          <input type="radio" value="man" v-model="gender" >帅哥
+          <input type="radio" value="woman" v-model="gender">美女
+      </div>
+
+      <div class="box">
+          <!-- 3. 复选  
+          由value来决定用户选中的值,结果放在一个数组中 -->
+          爱好：
+          <input type="checkbox"value="读书" v-model="hobby">读书
+          <input type="checkbox" value="运动" v-model="hobby">运动
+          <input type="checkbox" value="k歌"  v-model="hobby">k歌
+      </div>
+
+      <div class="box">
+          <!-- 4. 文本域  
+          注： 不能把内容写在元素中: 
+          <textarea v-model="info">abc</textarea>
+      -->
+          个人说明：<textarea v-model="info"></textarea>
+      </div>
+
+      <div class="box">
+      <!-- 5. 下拉
+         选中的值是以value为准
+      -->
+          位置： 
+          <select  v-model="home">
+              <option value="1">北京</option>
+              <option value="2">上海</option>
+              <option value="3">潜江</option>
+          </select>
+      </div>
+
+      <div class="box">
+          <!-- 6. 单个复选框（是否同意）
+              如果为true,则选中，false,不选中
+          -->
+          愿意和我一起吃早餐吗？<input type="checkbox" v-model="isAgree">
+      </div>
+      <!-- <button @click="hPrint">打印结果</button> -->
+      <button >打印结果</button>
+  </div>
+  <script>
+      // v-model 
+      // 是用来对表单元素进行双向绑定的。
+      // 1. 普通文本框 
+      // 2. 单选
+      // 3. 复选
+      // 4. 文本域
+      // 5. 下拉
+      // 6. 单个复选框（是否同意）
+      const vm = new Vue({
+        el: "#app",
+        data: {
+          name: '张三',
+          info: '法外狂徒！！！！',
+          gender: 'woman',
+          hobby: ['读书', 'k歌'],
+          home: 3, // "1"> 北京  "2"  上海  "3">潜江
+          isAgree: true
+        },
+        methods: {
+          hPrint () {
+            console.log('名字', this.name)
+            console.log('个人介绍', this.info)
+            console.log('性别', this.gender)
+            console.log('爱好', this.hobby)
+            console.log('老家', this.home)
+            console.log('是否同意', this.isAgree)
+          }
+        }
+      })
+      
+  </script>
+   </div>
+ </body>
+</html>

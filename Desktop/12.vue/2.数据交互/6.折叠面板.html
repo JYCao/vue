@@ -1,0 +1,59 @@
+
+
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+ <meta charset="UTF-8" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+ <title>案例-折叠面板</title>
+ <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.11/vue.js"></script>
+ <style>
+   body{
+     background-color: #eee;
+   }
+   #app{
+     background-color:#fff;
+     width: 500px;
+     margin: 50px auto;
+     box-shadow: 3px 3px 3px rgba(0 , 0, 0, 0.5);padding:2em;
+    }
+   .box{
+     padding: 1em;
+     border:1px solid #ccc;
+     margin:1em;
+   }
+   .title{
+     display: flex;
+     justify-content: space-between;
+   }
+   .title span{
+     cursor: pointer;
+   }
+   .content{text-align: center;}
+   </style>
+ </head>
+ <body>
+   <div id="app">
+     <h2>案例-折叠面板</h2>
+     <div class="title">
+        <label>洛阳陌 - 李白</label>
+        <!-- 靠点击改变面板的数据 -->
+        <span v-on:click="isShow=!isShow">
+          {{ isShow ? "收起" : "展开" }}
+        </span>
+     </div>
+      <div class="content" v-show="isShow">
+        白玉谁家郎，</br>回车渡天津。</br>
+        看花东陌上，</br>惊动洛阳人。</br>
+      </div>
+   </div>
+   <script>
+      var vm = new Vue({
+        el: '#app',
+        data: {
+          isShow: false
+        }
+      })
+   </script>
+ </body>
+</html>

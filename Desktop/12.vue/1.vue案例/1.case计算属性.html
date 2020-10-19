@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+ <meta charset="UTF-8" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+ <title>12.计算属性.html</title>
+ <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.11/vue.js"></script>
+ <style>
+   body{
+     background-color: #eee;
+   }
+   #app{
+     background-color:#fff;
+     width: 500px;
+     margin: 50px auto;
+     box-shadow: 3px 3px 3px rgba(0 , 0, 0, 0.5);padding:2em;
+    }
+   .box{
+     padding: 1em;
+     border:1px solid #ccc;
+     margin:1em;
+   }
+   </style>
+ </head>
+ <body>
+  <div id="app">
+    <h3>计算属性.html</h3>
+    <p v-for="(item,index) in goods" >{{item.name}}: {{item.price}}</p>
+    <p>价格超过2000元的数量:{{totalPrice}}</p>
+  </div>
+   <script>
+       new Vue({
+           el:'#app',
+           data: {
+               goods: [
+                   {name:'电脑',price:5000},
+                   {name:'手机',price:2000},
+                   {name:'平板',price:3000},
+
+               ],
+               
+           },
+          //  用过滤函数来 解决
+           computed: {
+               totalPrice: function(){
+                let m=0;
+                this.goods.forEach(item=>{
+                    if(item.price>2000){
+                        m++
+                    }
+                });
+                return m;
+                console.log(m)
+               }
+           }
+       })
+   </script>
+ </body>
+</html>

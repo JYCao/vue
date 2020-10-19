@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+ <meta charset="UTF-8" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+ <title>过滤器</title>
+ <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.11/vue.js"></script>
+ <style>
+   body{
+     background-color: #eee;
+   }
+   #app{
+     background-color:#fff;
+     width: 500px;
+     margin: 50px auto;
+     box-shadow: 3px 3px 3px rgba(0 , 0, 0, 0.5);padding:2em;
+    }
+   .box{
+     padding: 1em;
+     border:1px solid #ccc;
+     margin:1em;
+   }
+   .g{
+       color:green;
+   }
+   .r{
+     color: red;
+   }
+   .b {
+     color: blue;
+   }
+   </style>
+ </head>
+ <body>
+   <div id="app">
+     {{timeStamp}}
+     <h2>过滤器- {{price | fformatPrice(9) }}</h2>
+     <p v-for="(order,index) in orders">
+      序号:{{index+1}}, 
+      {{order.name}}, 
+      价格:{{order.price | fformatPrice()}},
+      订单日期:{{order.timeStamp | fformatDate}}, 
+      <!-- 状态:<label class="no-pay">{{order.status | fStatus}} </label> -->
+      状态:<label :class="order.status | fFormatStatus | fFormatStyle">{{order.status | fFormatStatus}} </label>
+     </p>
+   </div>
+   <script>
+      var vm = new Vue({
+        el: '#app',
+        data: {
+          timeStamp: 1602945572736,
+          price: 167.891,
+          // 1表示 待付款，  2 表示 待发货 ， 3表示 待收货
+          orders:[
+            { 
+              name: '裤子', price:271.195, timeStamp: 1602945572736, status: 1,
+            }, 
+            {
+              name: '电脑', price:6699.398, timeStamp: 1602975572756,  status: 2,
+            },
+            {
+              name: '方便面', price:15.507, timeStamp: 1602945672536,  status: 3 
+          }]
+        },
+        filters: {
+          // 过滤器的定义
+          // 属性名称（过滤器名称）：属性的值（过滤器处理函数）
+          // myFilter: function(value,其它参数) {
+
+          // }
+          fformatPrice(price,dig=1){
+            return Number(price).toFixed(dig)
+          },
+          fformatDate(date){
+            let m = new Date(date);
+            return m.getFullYear() +':'+(m.getMonth()+1) +':'+m.getDate(); 
+          },
+          
+          fFormatStatus(status){
+              if(status===1){
+                  return "待付款";
+              }else if(status===2){
+                  return "待发货";
+              }else{
+                  return '已付款';
+              }
+          },
+          fFormatStyle(state){
+            if(state==="待付款"){
+                return 'r';
+            }else if(state==="待发货"){
+                return 'g';
+            }else{
+                return 'b';
+            }
+          },
+        computed: {
+          formatedDate () {
+            // this.date1  ------> 2020-10-10
+            const dt = new Date(this.date1)
+            return dt.getFullYear() + '-' + (dt.getMonth()+1) + '-' + dt.getDate()
+          }
+        }
+      }
+    });
+   </script>
+ </body>
+</html>
