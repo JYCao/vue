@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <div id="app">
+    <div class="container">
+      <!-- 搜索 -->
+      <form class="form-inline" style="padding: 20px 0">
+        搜索：
+        <input
+        v-focus
+        v-model.trim="keyword" type="text" class="form-control" placeholder="输入关键字进行搜索">
+      </form>
+
+
+      <!-- 表格 -->
+      <table class="table table-bordered table-hover">
+        <thead>
+          <tr>
+            <th>编号</th>
+            <th>资产名称</th>
+            <th>价值</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody >
+          <tr v-for="(item,idx) in list">
+            <td>{{idx+1}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.price | fCurrency}}</td>
+            <td><a href="#" @click.prevent="hDel(item.id)">删除</a></td>
+          </tr>
+        </tbody>
+        <tbody v-if="!list.length">
+          <tr>
+            <td colspan="4">没有数据！</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="4">汇总:{{cTotalMoney | fCurrency}}</td>
+          </tr>
+        </tfoot>
+        
+      </table>
+
+      <!-- 添加资产 -->
+      <form class="form-inline">
+        <div class="form-group">
+            <div class="input-group">
+              <input type="text" v-model.trim="asset.name" class="form-control" placeholder="资产名称">
+            </div>
+            <div class="input-group">
+              <input type="text" v-model.trim.number="asset.price" class="form-control" placeholder="价值">
+            </div>
+       
+            <button class="btn btn-primary" @click.prevent="hAdd">添加资产</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+ <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.11/vue.js"></script>
+ <!-- 引入axios库 -->
+ <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.20.0/axios.min.js"></script>
+
+  <script>
+    // 1. v-if, v-else. 是否显示表格内容，或者是提示。 
+    // 2. v-for. 循环列表
+    // 3. {{ }} 显示数据
+    // 4. @click.prevent
+    // 5. 计算属性算总价
+    // 6. 过滤器，处理货币金额
+    // 7. 列表数据筛选
+    //    通过设计计算属性，让它来决定表格区域的数据。
+    // 8. 自定义指令
+
+
+    Vue.directive('focus', {
+      inserted: function(el) {
+        el.focus()
+      }
+    })
+    const vm = new Vue({
+        
+      el: '#app',
+      data:{
+        keyword: '', // 搜索关键字
+        list: [],
+        asset: {
+          name: '本子',
+          price: '2'
+        }
+      },
+    //   created 自动启动函数
+    created(){
+        // 发动ajax 请求,获取后端数据,渲染页面
+        // alert('123')
+        
+
+    this.loadData();
+
+    },
+    watch:{
+      keyword(newVal,oldVal){
+        axios({
+          method: 'GET',
+          url: 'http://localhost:3000/asset/',
+          params: {
+            name_like:newVal
+          },
+
+        }).then(res=>{
+          console.log('成功',res)
+          this.list = res.data;
+        }).catch(err=>{
+          console.log('失败',err)
+        })
+      }
+
+
+
+
+    },
+      computed: {
+        // 根据关键字和 list 进行计算，得到新的数据列表
+        // 计算的规则是：list中的某一项，如果它的name中包含了搜索关键字，则保留下来
+        // cFilterList () {
+        //   if(this.keyword === ''){
+        //     return this.list
+        //   }
+
+        //   const rs = this.list.filter(item => {
+        //     return item.name.includes(this.keyword)
+        //   })
+        //   return rs
+        // },
+        cTotalMoney () {
+          let m = 0
+          // 在一个计算属性中访问另一个计算属性
+          this.list.forEach(item => m+= Number(item.price))
+          return m
+        }
+      },
+      filters: {
+        fCurrency:function(value, _currency) {
+          // 全局匹配： 三位连续，且之后也是数值 的数值
+          var digitsRE = /(\d{3})(?=\d)/g;
+          value = parseFloat(value);
+          if (!isFinite(value) || !value && value !== 0) return '';
+          _currency = _currency != null ? _currency : '￥';
+          // 保留两位小数，并整体转成字符串
+          var stringified = Math.abs(value).toFixed(2);
+
+          // 获取整数部分。-3表示倒数3位的位置
+          var _int = stringified.slice(0, -3);
+
+          // 整数部分以3为基准长度划分，剩下几位
+          var i = _int.length % 3;
+          // 取出头部。
+          // 如：12345 ----> 12,
+          var head = i > 0 ? _int.slice(0, i) + (_int.length > 3 ? ',' : '') : '';
+          // 取出小数点部分
+          // 如：12345.67 ----> .67
+
+          var _float = stringified.slice(-3);
+          var sign = value < 0 ? '-' : '';
+          return _currency + sign + head + _int.slice(i).replace(digitsRE, '$1,') + _float;
+        }
+      },
+      methods: {
+        // 1. 命名： h+有意义的动词。不要随意！不要随意！不要随意！
+        // 2. 做删除，要询问
+        hDel (idx) {
+          // alert('a!!!!')
+          if(confirm(`你真的要删除吗?`)){
+            // this.list.splice(idx, 1)
+            // 发动请求删除数据
+            let id = idx;
+            console.log(id,'这是id');
+            axios({
+              method: 'DELETE',
+              url: 'http://localhost:3000/asset/'+id,
+
+            }).then(res=>{
+              console.log(res);
+              console.log('删除成功')
+              this.loadData();
+            }).catch(err=>{
+              // console.log(err)
+            })
+          }
+        },
+        // 1. 添加之前一定要判断。
+        // 2. 如果数据项比较多，可以装一个对象中
+        hAdd () {
+          const { name, price } = this.asset
+          // 1. 判断一下
+          // console.log(name)
+          // console.log(price)
+          if(name === '') {
+            return
+          }
+
+          if(price === '') {
+            return
+          }
+          //2. 添加数据到数据库,发送ajax请求...数据添加不上
+          axios({
+            method: 'POST',
+            url: 'http://localhost:3000/asset',
+            data: {
+              name,
+              price
+            }
+
+          }).then(res=>{
+            // console.log('成功');
+            console.log(res);
+            this.asset={};
+            this.loadData();
+            // this.asset={};
+          }).catch(err=>{
+            console.log('失败');
+          })
+
+
+
+
+          // 2. 添加到list中去
+          // TODO作业： 要求id是自动增长的： 每一次添加新的资产，其id都是最后一个元素的id+1.
+          // this.list.push({
+          //   id: 1,  // 作业： 要求id是自动增长的： 每一次添加新的资产，其id都是最后一个元素的id+1.
+          //   name,
+          //   price,
+          // })
+        },
+        // 把想要封装的函数都写到methods中
+        // 点击添加就发送Ajax请求
+     loadData(){
+        axios({
+            method: 'GET',
+            url: 'http://localhost:3000/asset',
+        }).then(res=>{
+            // console.log('成功');
+            // 将获取到的数据,放到data中
+            console.log(res);
+            this.list = res.data;
+            
+        }).catch(err=>{
+            // console.log('失败');
+        })
+    }
+      }
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.11/vue.js"></script>
+
+</head>
+
+<body>
+
+    <div id="app">
+        <my-div v-for="item in list" :title="item.title" :author="item.author" :content="item.content"></my-div>
+    </div>
+
+    <!-- <script src="./vue.js"></script> -->
+    <script>
+
+
+
+
+        Vue.component('MyDiv', {
+            props: ['title','author','content'],
+            data() {
+                return {
+                    isShow: false
+                }
+            },
+            template: `
+            
+            <div>
+                <div class="title">
+              <label>{{title}} - {{author}}----XXXXX</label>
+              <span v-on:click="isShow=!isShow">
+                {{ isShow ? "收起" : "展开" }}
+              </span>
+            </div>
+            <div class="content" v-show="isShow">
+                {{content}}
+            </div>
+            </div>
+            
+            `,
+            methods: {
+                hAdd1() {
+                    this.num += 1
+                }
+            }
+
+
+
+
+
+
+        })
+
+
+
+        new Vue({
+            el: '#app',
+            data: {
+                list:[
+                    {
+                        title: '洛阳陌',
+                        author: '李白',
+                        content:  '白玉谁家郎，回车渡天津。 看花东陌上,惊动洛阳人。'
+                    },
+                    {
+                        title: '洛阳陌',
+                        author: '李白',
+                        content:  '白玉谁家郎，回车渡天津。 看花东陌上,惊动洛阳人。'
+                    },
+                    {
+                        title: '洛阳陌',
+                        author: '李白',
+                        content:  '白玉谁家郎，回车渡天津。 看花东陌上,惊动洛阳人。'
+                    }
+                ]
+            }
+        })
+
+
+
+    </script>
+</body>
+
+</html>
